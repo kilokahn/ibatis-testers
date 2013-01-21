@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ReferralSource">
+	<resultMap class="com.kilo.domain.ReferralSource" id="referralSource">
+		<result property="referralSourceId" column="referral_source_id"/>
+		<result property="name" column="name"/>
+	</resultMap>
+
+	<select id="getReferralSources" resultMap="referralSource">
+		/*${com.kilo.statement.marker}*/
+		SELECT referral_source_id, name
+		  FROM referral_source
+	</select>
+	
+	<select id="getReferalSourceById" resultMap="referralSource" parameterClass="java.lang.Integer"
+		cacheModel="cache.reference-data-cache">
+		/*${com.kilo.statement.marker}*/
+		SELECT referral_source_id, name
+		  FROM referral_source
+		 WHERE referral_source_id = #referralSourceId#
+	</select>
+
+	<select id="getReferalSourceByUserId" resultMap="referralSource" parameterClass="java.lang.Integer"
+		cacheModel="cache.reference-data-cache">
+		/*${com.kilo.statement.marker}*/
+		SELECT rs.referral_source_id, rs.name
+		  FROM referral_source rs
+		  JOIN user_referral_source_map ursm
+		    ON rs.referral_source_id = ursm.referral_source_id
+		 WHERE ursm.user_id = #userId#
+	</select>
+
+
+    <select id="getReferalSourceByBlah" resultMap="referralSource" 
+        parameterClass="java.lang.String">
+        /*${com.kilo.statement.marker}*/
+        SELECT TOP 1 rs.referral_source_id, #value# AS name
+          FROM referral_source rs
+          JOIN user_referral_source_map ursm
+            ON rs.referral_source_id = ursm.referral_source_id
+         WHERE ursm.user_id = 1
+    </select>
+
+</sqlMap>

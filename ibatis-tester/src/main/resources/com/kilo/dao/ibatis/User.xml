@@ -12,13 +12,17 @@
         <result property="loginLocations" resultMap="LoginLocation.loginLocation" />
 	</resultMap>
 
+    <resultMap class="java.lang.String" id="loginIpAddressMap">
+        <result property="value" column="ip_address"/>
+    </resultMap>
+    
 	<resultMap id="userWithLoginIpAddresses" class="com.kilo.domain.User"
 		extends="userWithLoginLocations" groupBy="userId">
         <result property="loginIpAddresses" resultMap="User.loginIpAddressMap" />
 	</resultMap>
 
-    <resultMap class="java.lang.String" id="loginIpAddressMap">
-        <result property="value" column="ip_address"/>
+    <resultMap class="java.lang.String" id="siteMap">
+        <result property="value" column="site"/>
     </resultMap>
     
 	<resultMap id="userWithLoginLocationsAndUniqueSites" class="com.kilo.domain.User"
@@ -26,10 +30,6 @@
         <result property="uniqueSites" resultMap="User.siteMap" />
 	</resultMap>
 
-    <resultMap class="java.lang.String" id="siteMap">
-        <result property="value" column="site"/>
-    </resultMap>
-    
 	<select id="getUsers" resultMap="userWithLoginLocationsAndUniqueSites">
 		/*${com.kilo.statement.marker}*/
 		SELECT u.user_id, u.name, ll.ip_address, ll.login_location_id, ll.site
@@ -42,7 +42,7 @@
 	
 	<select id="getUserById" resultMap="userWithLoginLocationsAndUniqueSites" parameterClass="java.lang.Integer">
 		/*${com.kilo.statement.marker}*/
-		SELECT u.user_id, u.name, ll.ip_address, ll.login_location_id, ll.site --blah
+		SELECT u.user_id, u.name, ll.ip_address, ll.login_location_id, ll.site
 		  FROM [user] u
 		  JOIN user_login_location_map ullm
 		    ON ullm.user_id = u.user_id

@@ -1,3 +1,4 @@
+
 package com.kilo.dao.ibatis;
 
 import java.math.BigDecimal;
@@ -14,40 +15,40 @@ import com.kilo.domain.dto.BidItemCategoryAvgBidPrice;
 
 public class BidDAOImpl extends SqlMapClientDaoSupport implements BidDAO {
 
-	@Override
-	public List<Bid> getBidsForBidIds(List<Long> bidIds) {
-		@SuppressWarnings("unchecked")
-		List<Bid> bids = getSqlMapClientTemplate().queryForList(
-				"Bid.getBidsForBidIds", bidIds);
-		return bids;
-	}
+    @Override
+    public List<Bid> getBidsForBidIds(List<Long> bidIds) {
+        @SuppressWarnings("unchecked")
+        List<Bid> bids = getSqlMapClientTemplate().queryForList(
+                "Bid.getBidsForBidIds", bidIds);
+        return bids;
+    }
 
-	@Override
-	public List<Bid> getBidsForUniqueBidIds(Set<Long> bidIds) {
-		@SuppressWarnings("unchecked")
-		List<Bid> bids = getSqlMapClientTemplate().queryForList(
-				"Bid.getBidsForUniqueBidIds", bidIds);
-		return bids;
-	}
+    @Override
+    public List<Bid> getBidsForUniqueBidIds(Set<Long> bidIds) {
+        @SuppressWarnings("unchecked")
+        List<Bid> bids = getSqlMapClientTemplate().queryForList(
+                "Bid.getBidsForUniqueBidIds", bidIds);
+        return bids;
+    }
 
-	@Override
-	public List<BidItemCategoryAvgBidPrice> getAverageBidPricePerCategoryForBidIds(
-			List<Long> bidIds) {
-		@SuppressWarnings("unchecked")
-		List<BidItemCategoryAvgBidPrice> avgBidPricePerCategories = getSqlMapClientTemplate()
-				.queryForList("Bid.getAverageBidPricePerCategoryForBidIds",
-						bidIds);
-		return avgBidPricePerCategories;
-	}
+    @Override
+    public List<BidItemCategoryAvgBidPrice> getAverageBidPricePerCategoryForBidIds(
+            List<Long> bidIds) {
+        @SuppressWarnings("unchecked")
+        List<BidItemCategoryAvgBidPrice> avgBidPricePerCategories = getSqlMapClientTemplate()
+                .queryForList("Bid.getAverageBidPricePerCategoryForBidIds",
+                        bidIds);
+        return avgBidPricePerCategories;
+    }
 
-	@Override
-	public Map<BidItemCategory, BigDecimal> getAverageBidPricePerCategoryForBidIdsAsMap(
-			List<Long> bidIds) {
-		@SuppressWarnings("unchecked")
-		Map<BidItemCategory, BigDecimal> avgBidPricePerCategoryMap = getSqlMapClientTemplate()
-				.queryForMap("Bid.getAverageBidPricePerCategoryForBidIds",
-						bidIds, "bidItemCategory", "avgBidPrice");
-		return avgBidPricePerCategoryMap;
-	}
+    @Override
+    public Map<BidItemCategory, BigDecimal> getAverageBidPricePerCategoryForBidIdsAsMap(
+            List<Long> bidIds) {
+        @SuppressWarnings("unchecked")
+        Map<BidItemCategory, BigDecimal> avgBidPricePerCategoryMap = getSqlMapClientTemplate()
+                .queryForMap("Bid.getAverageBidPricePerCategoryForBidIds",
+                        bidIds, "bidItemCategory", "avgBidPrice");
+        return avgBidPricePerCategoryMap;
+    }
 
 }

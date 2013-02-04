@@ -1,3 +1,4 @@
+
 package com.kilo.dao.ibatis;
 
 import java.util.List;
@@ -8,14 +9,14 @@ import com.kilo.dao.BidItemDAO;
 import com.kilo.domain.BidItem;
 
 public class BidItemDAOImpl extends SqlMapClientDaoSupport implements
-		BidItemDAO {
+        BidItemDAO {
 
-	@Override
-	public List<BidItem> getBidItems() {
-		@SuppressWarnings("unchecked")
-		List<BidItem> bidItems = getSqlMapClientTemplate().queryForList(
-				"BidItem.getBidItems");
-		return bidItems;
-	}
+    @Override
+    public List<BidItem> getBidItems() {
+        @SuppressWarnings("unchecked")
+        List<BidItem> bidItems = getSqlMapClientTemplate().queryForList(
+                "BidItem.getBidItems");
+        return bidItems;
+    }
 
 }

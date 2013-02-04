@@ -25,7 +25,7 @@
     <logger name="com.ibatis">
         <level value="warn" />
     </logger>
-	
+    
     <root>
         <priority value="info" />
         <appender-ref ref="FileAppender" />
